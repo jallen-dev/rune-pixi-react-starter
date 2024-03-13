@@ -50,8 +50,7 @@ Rune.initLogic({
       game.players[playerId].ready = true
 
       if (Object.values(game.players).every((player) => player.ready)) {
-        game.currentScreen = "play"
-        game.gameStartedAt = Rune.gameTime()
+        startGame(game)
       }
     },
     moveLeft: ({ playerId }, { game }) => {
@@ -85,7 +84,7 @@ Rune.initLogic({
 
       // if we're in the lobby they were the last one to not be ready, start the game
       if (game.currentScreen === "lobby" && Object.values(game.players).every((player) => player.ready)) {
-        game.currentScreen = "play"
+        startGame(game)
       }
     },
   },
@@ -124,3 +123,8 @@ Rune.initLogic({
   },
   updatesPerSecond: UPDATES_PER_SECOND,
 })
+
+function startGame(game: GameState) {
+  game.currentScreen = "play"
+  game.gameStartedAt = Rune.gameTime()
+}
