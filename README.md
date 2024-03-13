@@ -2,7 +2,7 @@
 
 This is a starter project to create Rune games using react and @pixi/react (a react renderer for pixi.js). If you're already familiar with React, then this is a great way to build 2D games.
 
-Try the demo here: https://app.rune.ai/dev-xoaVAct4
+Try the demo here: https://app.rune.ai/dev-UnJquSHU
 
 ![Preview](preview.png)
 

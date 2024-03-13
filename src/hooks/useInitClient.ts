@@ -6,11 +6,13 @@ import { useGameStore } from "@/store/useGameStore"
 export function useInitClient() {
   useEffect(() => {
     Rune.initClient({
-      onChange: ({ game, futureGame, players, yourPlayerId, event }) => {
+      onChange: ({ game, futureGame, players, yourPlayerId, event, allPlayerIds }) => {
         useGameStore.setState({ game, playerDetails: players, yourPlayerId })
 
         if (event?.name === "stateSync") {
-          createInterpolatorsForPlayers(...Object.keys(players))
+          // remove any old interpolators from previous game
+          removeInterpolatorsForPlayers(...Object.keys(useGameStore.getState().interpolators.players))
+          createInterpolatorsForPlayers(...allPlayerIds)
         }
         if (event?.name === "playerJoined") {
           createInterpolatorsForPlayers(event.params.playerId)
