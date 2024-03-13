@@ -1,4 +1,3 @@
-export const UPDATES_PER_SECOND = 10
 export const ROUND_DURATION = 60_000
 
 // player movement

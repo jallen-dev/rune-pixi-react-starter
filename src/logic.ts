@@ -1,6 +1,6 @@
 import type { PlayerId, RuneClient } from "rune-games-sdk/multiplayer"
 
-import { ACCELERATION, DISTANCE_PER_SECOND, MOVEMENT_THRESHOLD, ROUND_DURATION, UPDATES_PER_SECOND } from "./constants"
+import { ACCELERATION, DISTANCE_PER_SECOND, MOVEMENT_THRESHOLD, ROUND_DURATION } from "./constants"
 import { GameScreen, Player } from "./types"
 
 export type GameState = {
@@ -116,12 +116,12 @@ Rune.initLogic({
           currentVelocity.x = 0
         }
         player.velocity = currentVelocity
-        player.position.x += player.velocity.x * (DISTANCE_PER_SECOND / UPDATES_PER_SECOND)
-        player.position.y += player.velocity.y * (DISTANCE_PER_SECOND / UPDATES_PER_SECOND)
+        player.position.x += player.velocity.x * (DISTANCE_PER_SECOND / 10)
+        player.position.y += player.velocity.y * (DISTANCE_PER_SECOND / 10)
       }
     }
   },
-  updatesPerSecond: UPDATES_PER_SECOND,
+  updatesPerSecond: 10,
 })
 
 function startGame(game: GameState) {
