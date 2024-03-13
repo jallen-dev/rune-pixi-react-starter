@@ -1,5 +1,6 @@
-import { useGameStore } from "@/store/useGameStore"
 import { useEffect } from "react"
+
+import { useGameStore } from "@/store/useGameStore"
 
 export function Controls() {
   const playerId = useGameStore((state) => state.yourPlayerId)

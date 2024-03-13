@@ -1,8 +1,9 @@
-import { GameState } from "@/logic"
-import { PlayersInterpolators } from "@/types"
 import { Interpolator, Player, PlayerId } from "rune-games-sdk"
 import { create } from "zustand"
 import { subscribeWithSelector } from "zustand/middleware"
+
+import { GameState } from "@/logic"
+import { PlayersInterpolators } from "@/types"
 
 type State = {
   yourPlayerId?: PlayerId

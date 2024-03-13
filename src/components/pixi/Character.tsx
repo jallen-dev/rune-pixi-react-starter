@@ -1,10 +1,11 @@
-import { Html } from "@/helpers/Html"
-import { useGameStore } from "@/store/useGameStore"
-import { CharacterModel, IAnimatedSprite } from "@/types"
 import { Texture } from "@pixi/core"
 import { AnimatedSprite, useTick } from "@pixi/react"
 import { useId, useMemo, useRef } from "react"
 import { PlayerId } from "rune-games-sdk"
+
+import { Html } from "@/helpers/Html"
+import { useGameStore } from "@/store/useGameStore"
+import { CharacterModel, IAnimatedSprite } from "@/types"
 
 export function Character({ playerId, model }: { playerId: PlayerId; model: CharacterModel }) {
   const facing = useGameStore((state) => state.game.players[playerId].facing)

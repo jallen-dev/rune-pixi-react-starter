@@ -1,5 +1,6 @@
-import { useGameStore } from "@/store/useGameStore"
 import { useEffect, useRef } from "react"
+
+import { useGameStore } from "@/store/useGameStore"
 
 export function Clock() {
   const ref = useRef<HTMLSpanElement>(null)

@@ -1,11 +1,12 @@
+import { Container, Text } from "@pixi/react"
+import { TextStyle } from "@pixi/text"
+import { useShallow } from "zustand/react/shallow"
+
 import { Clock } from "@/components/dom/Clock"
 import { Controls } from "@/components/dom/Controls"
 import { Character } from "@/components/pixi/Character"
 import { Pixi } from "@/helpers/Pixi"
 import { useGameStore } from "@/store/useGameStore"
-import { Container, Text } from "@pixi/react"
-import { TextStyle } from "@pixi/text"
-import { useShallow } from "zustand/react/shallow"
 
 export function Play() {
   const playerIds = useGameStore(useShallow((state) => Object.keys(state.game.players)))

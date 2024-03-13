@@ -1,6 +1,7 @@
-import { useGameStore } from "@/store/useGameStore"
 import { PlayerId } from "rune-games-sdk"
 import { useShallow } from "zustand/react/shallow"
+
+import { useGameStore } from "@/store/useGameStore"
 
 export function Lobby() {
   const playerIds = useGameStore(useShallow((state) => Object.keys(state.game.players)))
