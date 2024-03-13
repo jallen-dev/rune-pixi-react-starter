@@ -5,7 +5,6 @@ import { useGameStore } from "./store/useGameStore"
 
 export function updateInterpolators(game: GameState, futureGame: GameState) {
   const interpolators = useGameStore.getState().interpolators
-  console.log(Object.keys(interpolators.players).length)
 
   interpolators.timeLeft.update({
     game: game.timeLeft,
