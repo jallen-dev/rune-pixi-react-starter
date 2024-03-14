@@ -1,31 +1,23 @@
 import { useEffect } from "react"
 
-import { useGameStore } from "@/store/useGameStore"
-
 export function Controls() {
-  const playerId = useGameStore((state) => state.yourPlayerId)
-
-  useKeyboardControls(playerId)
-
-  if (!playerId) {
-    return null
-  }
+  useKeyboardControls()
 
   return (
     <div className="fixed bottom-8 flex w-full gap-2 p-8">
       <button
         className="bg-slate-800 p-4 hover:bg-slate-700 active:bg-slate-900"
-        onPointerDown={() => Rune.actions.moveLeft({ playerId })}
-        onPointerUp={() => Rune.actions.stop({ playerId })}
-        onPointerOut={() => Rune.actions.stop({ playerId })}
+        onPointerDown={moveLeft}
+        onPointerUp={stop}
+        onPointerOut={stop}
       >
         ◄
       </button>
       <button
         className="bg-slate-800 p-4 hover:bg-slate-700 active:bg-slate-900"
-        onPointerDown={() => Rune.actions.moveRight({ playerId })}
-        onPointerUp={() => Rune.actions.stop({ playerId })}
-        onPointerOut={() => Rune.actions.stop({ playerId })}
+        onPointerDown={moveRight}
+        onPointerUp={stop}
+        onPointerOut={stop}
       >
         ►
       </button>
@@ -33,31 +25,19 @@ export function Controls() {
   )
 }
 
-function useKeyboardControls(playerId?: string) {
+function useKeyboardControls() {
   useEffect(() => {
-    if (!playerId) {
-      return
-    }
-
     function keyDown(event: KeyboardEvent) {
-      if (!playerId) {
-        return
-      }
-
       if (event.key === "ArrowLeft") {
-        Rune.actions.moveLeft({ playerId })
+        moveLeft()
       } else if (event.key === "ArrowRight") {
-        Rune.actions.moveRight({ playerId })
+        moveRight()
       }
     }
 
     function keyUp(event: KeyboardEvent) {
-      if (!playerId) {
-        return
-      }
-
       if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-        Rune.actions.stop({ playerId })
+        stop()
       }
     }
 
@@ -68,5 +48,17 @@ function useKeyboardControls(playerId?: string) {
       window.removeEventListener("keydown", keyDown)
       window.removeEventListener("keyup", keyUp)
     }
-  }, [playerId])
+  }, [])
+}
+
+function moveLeft() {
+  Rune.actions.moveLeft()
+}
+
+function moveRight() {
+  Rune.actions.moveRight()
+}
+
+function stop() {
+  Rune.actions.stop()
 }

@@ -11,10 +11,10 @@ export type GameState = {
 }
 
 type GameActions = {
-  ready: (params: { playerId: PlayerId }) => void
-  moveLeft: (params: { playerId: PlayerId }) => void
-  moveRight: (params: { playerId: PlayerId }) => void
-  stop: (params: { playerId: PlayerId }) => void
+  ready: () => void
+  moveLeft: () => void
+  moveRight: () => void
+  stop: () => void
 }
 
 declare global {
@@ -46,24 +46,24 @@ Rune.initLogic({
     }
   },
   actions: {
-    ready: ({ playerId }, { game }) => {
+    ready: (_, { game, playerId }) => {
       game.players[playerId].ready = true
 
       if (Object.values(game.players).every((player) => player.ready)) {
         startGame(game)
       }
     },
-    moveLeft: ({ playerId }, { game }) => {
+    moveLeft: (_, { game, playerId }) => {
       game.players[playerId].facing = "left"
       game.players[playerId].state = "walking"
       game.players[playerId].direction.x = -1
     },
-    moveRight: ({ playerId }, { game }) => {
+    moveRight: (_, { game, playerId }) => {
       game.players[playerId].facing = "right"
       game.players[playerId].state = "walking"
       game.players[playerId].direction.x = 1
     },
-    stop: ({ playerId }, { game }) => {
+    stop: (_, { game, playerId }) => {
       game.players[playerId].state = "standing"
       game.players[playerId].direction.x = 0
     },

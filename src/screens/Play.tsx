@@ -10,11 +10,12 @@ import { useGameStore } from "@/store/useGameStore"
 
 export function Play() {
   const playerIds = useGameStore(useShallow((state) => Object.keys(state.game.players)))
+  const yourPlayerId = useGameStore((state) => state.yourPlayerId)
 
   return (
     <div>
       <Clock />
-      <Controls />
+      {yourPlayerId && <Controls />}
       <Pixi.In>
         <Text
           text="Hello Pixi from HTML!"

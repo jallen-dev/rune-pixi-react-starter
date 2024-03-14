@@ -19,9 +19,7 @@ export function Lobby() {
         {yourPlayerId && !ready && (
           <button
             className="fixed bottom-16 left-1/2 -translate-x-1/2 rounded-lg bg-green-600 p-4"
-            onClick={() => {
-              Rune.actions.ready({ playerId: yourPlayerId })
-            }}
+            onClick={() => Rune.actions.ready()}
           >
             Ready!
           </button>
