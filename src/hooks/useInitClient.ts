@@ -3,8 +3,11 @@ import { useEffect } from "react"
 import { createInterpolatorsForPlayers, removeInterpolatorsForPlayers, updateInterpolators } from "@/interpolators"
 import { useGameStore } from "@/store/useGameStore"
 
-export function useInitClient() {
+export function useInitClient(assetsLoaded: boolean) {
   useEffect(() => {
+    if (!assetsLoaded) {
+      return
+    }
     Rune.initClient({
       onChange: ({ game, futureGame, players, yourPlayerId, event, allPlayerIds }) => {
         useGameStore.setState({ game, playerDetails: players, yourPlayerId })
@@ -25,5 +28,5 @@ export function useInitClient() {
         }
       },
     })
-  }, [])
+  }, [assetsLoaded])
 }

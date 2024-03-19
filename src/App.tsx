@@ -9,10 +9,10 @@ import { GameScreen } from "./types.ts"
 function App() {
   const currentScreen = useGameStore((state) => state.game.currentScreen)
   const assetsLoaded = useLoadAssets()
-  useInitClient()
+  useInitClient(assetsLoaded)
 
   if (!assetsLoaded) {
-    return <div>Loading assets...</div>
+    return null
   }
 
   const Screen = SCREEN[currentScreen]
